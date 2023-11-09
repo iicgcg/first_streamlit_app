@@ -1,5 +1,5 @@
 import streamlit
-import pandas as pd
+import pandas
 
 streamlit.header('Breakfast Favorites')
 
