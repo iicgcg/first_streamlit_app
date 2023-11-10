@@ -28,6 +28,9 @@ streamlit.write('The user entered ', fruit_choice)
 #New section to dicplay FruityVice API results
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
 # streamlit.text(fruityvice_response.json())
+# normalize the values from json format
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# display normalized data from fruityvice
 streamlit.dataframe(fruityvice_normalized)
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -36,6 +39,3 @@ my_cur.execute("SELECT * from fruit_load_list")
 my_data_row = my_cur.fetchone()
 streamlit.text("Hello from Snowflake:")
 streamlit.text(my_data_row)
-# normalize the values from json format
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# display normalized data from fruityvice
