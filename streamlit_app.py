@@ -71,7 +71,7 @@ def insert_row_sf(new_fruit):
     my_cur.execute("Insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('", new_fruit, ")")
     return "Thanks for adding " + new_fruit
 
-fruit_input = streamlit.text_input('What fruit would you like to add?')
+new_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Add a fruit to the list'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   return_from_fn = insert_row_sf(new_fruit)
